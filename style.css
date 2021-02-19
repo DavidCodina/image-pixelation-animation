@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+
+body {
+  background-color: rgb(243,242,247);
+}
+
+p {
+  margin-bottom: 25px;
+  line-height: 1.75;
+}
+
+figure {
+  display:block;
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  width: 90%;
+  margin: 0 auto 50px auto;
+  font-size: 16px;
+  background-color: rgb(240,240,240);
+  border: 2px solid #333;
+  border-radius: 15px;
+  overflow:scroll;
+}
+
+.article {
+  margin: 0 auto 50px auto;
+  padding: 25px;
+  background-color: #FFF;
+  border: 2px solid #61DAFB;
+  border-radius: 25px;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+}
+
+.fancy-h1 {
+  margin: 0;
+  padding: 0px 25px;
+  color: snow;
+  text-align: center;
+  font-size: 50px;
+  font-family: Montserrat;
+  letter-spacing: 3px;
+  line-height: 1.25;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: violet;
+  text-shadow: -3px 3px 6px rgba(0,0,0,0.15);
+}
+
+.fancy-h2 {
+  margin: 0 0 25px 0;
+  color: snow;
+  font-size: 40px;
+  font-family: Montserrat;
+  letter-spacing: 1px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: violet;
+  text-shadow: -2px 2px 4px rgba(0,0,0,0.15);
+}
+
+.child-mb-1 > * { margin-bottom: 0.25rem !important; }
+.child-mb-2 > * { margin-bottom: 0.5rem !important;  }
+.child-mb-3 > * { margin-bottom: 1rem !important;    }
+.child-mb-4 > * { margin-bottom: 1.5rem !important;  }
+.child-mb-5 > * { margin-bottom: 3rem !important;    }
+
+.w-90 { width: 90% !important; }
+
+#primary-navbar {
+  background: #12c2e9;
+  background: -webkit-linear-gradient(to left, #f64f59, #c471ed, #12c2e9);
+  background: linear-gradient(to left, #f64f59, #c471ed, #12c2e9);
+  background-size: 170%;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.75);
+}
+
+
+/* =============================================================================
+
+============================================================================= */
+
+
+.demo-container {
+  max-width: 800px;
+}
+
+#pixelated-img {
+  cursor: pointer;
+}
+
+canvas {
+  display:none;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+
+/* =============================================================================
+                                Media Queries
+============================================================================= */
+/* Mobile-first media queries that follow Bootstrap's breakpoints.
+Note: xs is implied by the default styles. */
+
+/* sm */
+@media (min-width: 576px) {
+}
+
+/* md */
+@media (min-width: 768px) {
+}
+
+/* lg */
+@media (min-width: 992px) {
+}
+
+/* xl */
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+  main > .container-fluid { max-width: 1400px; }
+}

@@ -66,9 +66,12 @@ function togglePixelation(){
 
 image.addEventListener('click', togglePixelation);
 
+
 window.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM content loaded. Creating Pixelate instance now.");
-  pixelate = new Pixelate(image, { amount: pixelationAmount / 100 });
+  // We shouldn't need to use setTimeout, but for some reason it fixes the issue with the initial load.
+  setTimeout(function(){
+    pixelate = new Pixelate(image, { amount: pixelationAmount / 100 });
+  }, 100);
 });
 
 window.onresize = function(){

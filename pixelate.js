@@ -1,5 +1,5 @@
 function precise(n){
-  return (parseFloat(n).toPrecision(2));
+  return parseFloat(parseFloat(n).toPrecision(2));
 }
 
 
@@ -118,7 +118,11 @@ Pixelate.prototype.render = function(){
   var w = this.width  * (this.amount <= 0 ? 0.01 : this.amount);
   var h = this.height * (this.amount <= 0 ? 0.01 : this.amount);
   this.ctx.drawImage(this.pixelImage, 0, 0, w, h);                            // render smaller image
-  this.ctx.drawImage(this.canvas, 0, 0, w, h, 0, 0, this.width, this.height); // stretch the smaller image
-  this.image.src = this.canvas.toDataURL('image/png');
+  // this.ctx.drawImage(this.canvas, 0, 0, w, h, 0, 0, this.width, this.height); // stretch the smaller image
+  // this.image.src = this.canvas.toDataURL('image/png');
+  setTimeout(function(){
+    this.ctx.drawImage(this.canvas, 0, 0, w, h, 0, 0, this.width, this.height);
+    this.image.src = this.canvas.toDataURL('image/png');
+  }.bind(this), 0);
   return this;
 };

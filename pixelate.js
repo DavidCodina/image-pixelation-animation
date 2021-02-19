@@ -52,7 +52,10 @@ function Pixelate(image, opts){
 
   if (this.image.complete){
     // It's not at all clear why this is necessary, but I added it, and it seems to fix the loading issue.
-    setTimeout(() => { this.init(); }, 150);
+    //setTimeout(() => { this.init(); }, 150);
+    this.init();
+  } else {
+    console.log("Not complete yet.");
   }
 
   return this;
@@ -111,7 +114,10 @@ Pixelate.prototype.setWidth = function(width){
 
 
 Pixelate.prototype.render = function(){
-  if (!this.ready){ return this; }
+  if (!this.ready){
+    console.log("Not ready yet.");
+    return this;
+  }
 
   var w = this.width  * (this.amount <= 0 ? 0.01 : this.amount);
   var h = this.height * (this.amount <= 0 ? 0.01 : this.amount);

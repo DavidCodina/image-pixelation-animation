@@ -74,7 +74,10 @@ Pixelate.prototype.init = function(){
     console.log("Not complete yet. Will rerun init().");
     setTimeout(() => { this.init(); }, 50);
     return;
+  } else {
+    console.log("It's complete now!");
   }
+
 
 
 

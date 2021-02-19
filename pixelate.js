@@ -49,14 +49,16 @@ function Pixelate(image, opts){
 
   ============================== */
 
+  this.init();
 
-  if (this.image.complete){
-    // It's not at all clear why this is necessary, but I added it, and it seems to fix the loading issue.
-    //setTimeout(() => { this.init(); }, 150);
-    this.init();
-  } else {
-    console.log("Not complete yet.");
-  }
+
+  // if (this.image.complete){
+  //   // It's not at all clear why this is necessary, but I added it, and it seems to fix the loading issue.
+  //   //setTimeout(() => { this.init(); }, 150);
+  //   this.init();
+  // } else {
+  //   console.log("Not complete yet.");
+  // }
 
   return this;
 } //function Pixelate()
@@ -68,6 +70,13 @@ function Pixelate(image, opts){
 
 
 Pixelate.prototype.init = function(){
+  if (!this.image.complete){
+    console.log("Not complete yet. Will rerun init().");
+    setTimeout(() => { this.init(); }, 50);
+  }
+
+
+
   this.image.parentNode.appendChild(this.canvas, this.image);
   this.image.parentNode.querySelector('CANVAS').style.display = 'none';
 

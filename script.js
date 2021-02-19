@@ -1,9 +1,9 @@
 window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
 
 
-const image            = document.querySelector('#pixelated-img');
-let pixelationAmount   = 90;
-const pixelate         = new Pixelate(image, { amount: pixelationAmount / 100 });
+const image           = document.querySelector('#pixelated-img');
+let pixelationAmount  = 90;
+let pixelate          = null;
 
 
 /* =============================================================================
@@ -66,6 +66,10 @@ function togglePixelation(){
 
 image.addEventListener('click', togglePixelation);
 
+window.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM content loaded. Creating Pixelate instance now.");
+  pixelate = new Pixelate(image, { amount: pixelationAmount / 100 });
+});
 
 window.onresize = function(){
   pixelate.setWidth(image.parentNode.clientWidth).render();

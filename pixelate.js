@@ -22,27 +22,10 @@ function disableSmoothRendering(ctx){
 ============================================================================= */
 
 
-function Pixelate(image, opts){
-  opts                      = opts || {};
-  this.image                = image;
-  this.amount               = precise(1 - (opts.amount|| 0));
-  this.imageUrl             = image.src;
-  this.width                = image.clientWidth;
-  this.height               = image.clientHeight;
-  this.canvas               = document.createElement('canvas');
-  this.canvas.width         = this.width;
-  this.canvas.height        = this.height;
-  this.canvas.style.cssText = 'image-rendering: optimizeSpeed;' +             // FireFox < 6.0
-                              'image-rendering: -moz-crisp-edges;' +          // FireFox
-                              'image-rendering: -o-crisp-edges;' +            // Opera
-                              'image-rendering: -webkit-crisp-edges;' +       // Chrome
-                              'image-rendering: crisp-edges;' +               // Chrome
-                              'image-rendering: -webkit-optimize-contrast;' + // Safari
-                              'image-rendering: pixelated; ' +                // Future browsers
-                              '-ms-interpolation-mode: nearest-neighbor;';    // IE
-  this.ctx                  = this.canvas.getContext('2d');
-  this.ctx                  = disableSmoothRendering(this.ctx);
-  this.pixelImage           = new Image();
+function Pixelate(image, options){
+  options     = options || {};
+  this.amount = precise(1 - (options.amount || 0));
+  this.image  = image;
 
 
   /* ==============================
@@ -77,6 +60,26 @@ Pixelate.prototype.init = function(){
   } else {
     console.log("It's complete now!");
   }
+
+
+
+  this.imageUrl             = image.src;
+  this.width                = image.clientWidth;
+  this.height               = image.clientHeight;
+  this.canvas               = document.createElement('canvas');
+  this.canvas.width         = this.width;
+  this.canvas.height        = this.height;
+  this.canvas.style.cssText = 'image-rendering: optimizeSpeed;' +             // FireFox < 6.0
+                              'image-rendering: -moz-crisp-edges;' +          // FireFox
+                              'image-rendering: -o-crisp-edges;' +            // Opera
+                              'image-rendering: -webkit-crisp-edges;' +       // Chrome
+                              'image-rendering: crisp-edges;' +               // Chrome
+                              'image-rendering: -webkit-optimize-contrast;' + // Safari
+                              'image-rendering: pixelated; ' +                // Future browsers
+                              '-ms-interpolation-mode: nearest-neighbor;';    // IE
+  this.ctx                  = this.canvas.getContext('2d');
+  this.ctx                  = disableSmoothRendering(this.ctx);
+  this.pixelImage           = new Image();
 
 
 

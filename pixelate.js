@@ -1,19 +1,7 @@
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Number/toPrecision
+//https://stackoverflow.com/questions/1458633/how-to-deal-with-floating-point-number-precision-in-javascript
 function precise(n){
   return parseFloat(parseFloat(n).toPrecision(2));
-}
-
-
-/* =============================================================================
-
-============================================================================= */
-
-
-function disableSmoothRendering(ctx){
-  ctx.webkitImageSmoothingEnabled = false;
-  ctx.mozImageSmoothingEnabled    = false;
-  ctx.msImageSmoothingEnabled     = false;
-  ctx.imageSmoothingEnabled       = false;
-  return ctx;
 }
 
 
@@ -24,13 +12,11 @@ function disableSmoothRendering(ctx){
 
 function Pixelate(image, options){
   options     = options || {};
-  this.amount = precise(1 - (options.amount || 0));
   this.image  = image;
-
+  this.amount = precise(1 - (options.amount || 0));
   this.init();
-
   return this;
-} //function Pixelate()
+}
 
 
 /* =============================================================================
@@ -51,7 +37,7 @@ Pixelate.prototype.init = function(){
   this.imageUrl             = image.src;
   this.width                = image.clientWidth;
   this.height               = image.clientHeight;
-  this.canvas               = document.createElement('canvas');
+  this.canvas               = document.createElement('CANVAS');
   this.canvas.width         = this.width;
   this.canvas.height        = this.height;
   this.canvas.style.cssText = 'image-rendering: optimizeSpeed;' +             // FireFox < 6.0
@@ -62,13 +48,17 @@ Pixelate.prototype.init = function(){
                               'image-rendering: -webkit-optimize-contrast;' + // Safari
                               'image-rendering: pixelated; ' +                // Future browsers
                               '-ms-interpolation-mode: nearest-neighbor;';    // IE
-  this.ctx                  = this.canvas.getContext('2d');
-  this.ctx                  = disableSmoothRendering(this.ctx);
-  this.pixelImage           = new Image();
+  this.ctx                             = this.canvas.getContext('2d');
+  this.ctx.webkitImageSmoothingEnabled = false;
+  this.ctx.mozImageSmoothingEnabled    = false;
+  this.ctx.msImageSmoothingEnabled     = false;
+  this.ctx.imageSmoothingEnabled       = false;
+  this.pixelImage                      = new Image();
 
 
-  this.image.parentNode.appendChild(this.canvas, this.image);
-  this.image.parentNode.querySelector('CANVAS').style.display = 'none';
+  // This was part of the original, but seems unnecessary.
+  // this.image.parentNode.appendChild(this.canvas, this.image);
+  // this.image.parentNode.querySelector('CANVAS').style.display = 'none';
 
 
   this.pixelImage.onload = function(){
@@ -104,7 +94,6 @@ Pixelate.prototype.setWidth = function(width){
   this.height        = height;
   this.canvas.width  = this.width;
   this.canvas.height = this.height;
-  this.ctx = disableSmoothRendering(this.ctx);
   return this;
 };
 
@@ -116,7 +105,8 @@ Pixelate.prototype.setWidth = function(width){
 
 Pixelate.prototype.render = function(){
   if (!this.ready){
-    console.log("Not ready yet.");
+    console.log("Not ready yet. Will rerun render()");
+    setTimeout(() => { this.render(); }, 100);
     return this;
   }
 

@@ -12,7 +12,9 @@ let pixelate          = null;
 
 
 function update(amount){
-  pixelate.setAmount(amount / 100).render();
+  if (pixelate){
+    pixelate.setAmount(amount / 100).render();
+  }
 }
 
 
@@ -72,5 +74,7 @@ window.addEventListener("DOMContentLoaded", function(){
 });
 
 window.onresize = function(){
-  pixelate.setWidth(image.parentNode.clientWidth).render();
+  if (pixelate){
+    pixelate.setWidth(image.parentNode.clientWidth).render();
+  }
 };

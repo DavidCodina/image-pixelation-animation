@@ -27,21 +27,7 @@ function Pixelate(image, options){
   this.amount = precise(1 - (options.amount || 0));
   this.image  = image;
 
-
-  /* ==============================
-
-  ============================== */
-
   this.init();
-
-
-  // if (this.image.complete){
-  //   // It's not at all clear why this is necessary, but I added it, and it seems to fix the loading issue.
-  //   //setTimeout(() => { this.init(); }, 150);
-  //   this.init();
-  // } else {
-  //   console.log("Not complete yet.");
-  // }
 
   return this;
 } //function Pixelate()
@@ -60,7 +46,6 @@ Pixelate.prototype.init = function(){
   } else {
     console.log("It's complete now!");
   }
-
 
 
   this.imageUrl             = image.src;
@@ -82,17 +67,15 @@ Pixelate.prototype.init = function(){
   this.pixelImage           = new Image();
 
 
-
-
-
-
   this.image.parentNode.appendChild(this.canvas, this.image);
   this.image.parentNode.querySelector('CANVAS').style.display = 'none';
+
 
   this.pixelImage.onload = function(){
     this.ready = true;
     this.render();
   }.bind(this);
+
 
   this.pixelImage.src = this.imageUrl; //Doing this will inoke the onload function above.
 }
@@ -104,7 +87,7 @@ Pixelate.prototype.init = function(){
 
 
 Pixelate.prototype.setAmount = function(amount){
-  this.amount = precise(1 - (amount|| 0));
+  this.amount = precise(1 - (amount || 0));
   return this;
 };
 
